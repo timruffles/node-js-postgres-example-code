@@ -1,4 +1,4 @@
-var knex = require("./db")
+var knex = require("../db")
 
 knex("events")
 .exec(function(err, rows) {
