@@ -1,6 +1,6 @@
 exports.up = function(knex, Promise) {
 
-  return knex.schema.createTable('events', function (table) {
+  var createEvents = knex.schema.createTable('events', function (table) {
     table.increments('id');
     table.string('title').notNullable();
     table.dateTime('startAt').notNullable();
