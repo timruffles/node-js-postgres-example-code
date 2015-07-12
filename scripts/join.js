@@ -14,7 +14,9 @@ knex("events")
 function formatOutput(eventsWithOrganizerNames) {
   eventsWithOrganizerNames.forEach(function(row) {
     var startAt = row.startAt;
-    var date = [startAt.getUTCFullYear(), startAt.getUTCMonth() + 1, startAt.getUTCDate()].join("/");
+    // in JS months are 0 indexed, but days are 1 indexed. yay!
+    var humanMonth = startAt.getUTCMonth() + 1;
+    var date = [startAt.getUTCFullYear(), humanMonth, startAt.getUTCDate()].join("/");
     console.log(row.organizerName + " is organizing '" + row.title + "' on " + date);
   });
 }

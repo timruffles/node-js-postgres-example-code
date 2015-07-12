@@ -7,7 +7,7 @@ exports.up = function(knex, Promise) {
   });
 
   // we need to wait for organizers to be created
-  // before creating events
+  // before creating events as it relates to the organisers table
   var changeEvents = createOrganizers
   .then(function() {
     return knex.schema.table('events', function (table) {
@@ -18,7 +18,6 @@ exports.up = function(knex, Promise) {
   });
 
   return changeEvents;
-
   
 };
 

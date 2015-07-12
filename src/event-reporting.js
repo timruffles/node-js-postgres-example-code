@@ -11,6 +11,8 @@ exports.nextEvents = function(organiserId, n, cb) {
 exports.eventPage = function(organiserId, pageIndex, pageSize, cb) {
   knex("events") 
     .where({ organiserId: organiserId })
+    // 'asc' means ascending. This is the default but
+    // it never hurts to be explicit in our code!
     .orderBy("startAt", "asc")
     .offset(pageIndex * pageSize)
     .limit((pageIndex + 1) * pageSize)
@@ -32,6 +34,9 @@ exports.attendeesAttendingNEvents = function(organiserId, n, cb) {
     .leftJoin("tickets", "tickets.attendeeId", "attendees.id")
     .groupBy("attendees.id")
     .select("attendees.*, SUM(tickets.id) AS attendanceCount")
-    .having("attendanceCount > ?", [n])
+    // having allows us to select grouped rows by the results
+    // of their aggregate operations. here we're checking
+    // that a group has at least a given count of attended events
+    .having("attendanceCount >= ?", [n])
     .exec(cb);
 }
