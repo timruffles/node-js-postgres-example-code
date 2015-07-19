@@ -7,18 +7,18 @@ exports.up = function(knex, Promise) {
   });
 
   // we need to wait for organizers to be created
-  // before creating events as it relates to the organisers table
+  // before creating events as it relates to the organizers table
   var changeEvents = createOrganizers
   .then(function() {
     return knex.schema.table('events', function (table) {
-      table.integer('organizer_id')
+      table.integer('organizerId')
         .references('organizers.id')
         .notNullable();
     })
   });
 
   return changeEvents;
-  
+
 };
 
 exports.down = function() { throw new Error("no revert") };

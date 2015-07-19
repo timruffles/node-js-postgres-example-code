@@ -1,6 +1,6 @@
 knex("events")
 .select("events.*, organizers.name AS organizerName")
-.join('events.organizer_id', '=', 'organizers.id')
+.join('events.organizerId', '=', 'organizers.id')
 .where(function() {
   this.where({
     "organizerName": "Bob",
