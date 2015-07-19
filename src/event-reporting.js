@@ -1,16 +1,16 @@
 var knex = require("../db");
 
-exports.nextEvents = function(organiserId, n, cb) {
-  knex("events") 
-    .where({ organiserId: organiserId })
+exports.nextEvents = function(organizerId, n, cb) {
+  knex("events")
+    .where({ organizerId: organizerId })
     .orderBy("startAt", "desc")
     .limit(n)
     .exec(cb);
 }
 
-exports.eventPage = function(organiserId, pageIndex, pageSize, cb) {
-  knex("events") 
-    .where({ organiserId: organiserId })
+exports.eventPage = function(organizerId, pageIndex, pageSize, cb) {
+  knex("events")
+    .where({ organizerId: organizerId })
     // 'asc' means ascending. This is the default but
     // it never hurts to be explicit in our code!
     .orderBy("startAt", "asc")
@@ -19,17 +19,17 @@ exports.eventPage = function(organiserId, pageIndex, pageSize, cb) {
     .exec(cb);
 }
 
-exports.mostPopular = function(organiserId, n, since, cb) {
-  knex("events") 
+exports.mostPopular = function(organizerId, n, since, cb) {
+  knex("events")
     .join("tickets", "tickets.eventId", "events.id")
-    .where({ organiserId: organiserId })
+    .where({ organizerId: organizerId })
     .andWhere("startAt", ">", since)
     .groupBy("events.id")
     .select("events.*, SUM(tickets.id)")
     .exec(cb);
 }
 
-exports.attendeesAttendingNEvents = function(organiserId, n, cb) {
+exports.attendeesAttendingNEvents = function(organizerId, n, cb) {
   knex("attendees")
     .leftJoin("tickets", "tickets.attendeeId", "attendees.id")
     .groupBy("attendees.id")
