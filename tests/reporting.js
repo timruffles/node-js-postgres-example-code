@@ -1,13 +1,5 @@
 var reporting = require("../src/event-reporting")
 
-function stripError(done, fn) {
-  return function(err) {
-    if(err) return done(err);
-    fn.apply(null, [].slice.call(arguments, 1));
-  }
-}
-
-
 describe("eventPage", function() {
 
   it("can fetch first page", function(done) {
@@ -38,3 +30,12 @@ describe("eventPage", function() {
     }));
   });
 })
+
+function stripError(done, fn) {
+  return function(err) {
+    if(err) return done(err);
+    fn.apply(null, [].slice.call(arguments, 1));
+  }
+}
+
+
