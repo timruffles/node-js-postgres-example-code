@@ -46,3 +46,16 @@ describe("full text search", function() {
     });
   });
 })
+
+var attend = require("../src/attend")
+
+
+describe("attending", function() {
+
+  before(function(done) {
+    
+  });
+
+
+
+})

@@ -1,8 +1,8 @@
 var knex = require("../db")
 
 knex("events")
-.select("events.*", "organizers.name")
-.join('organizers', 'organizerId', '=', 'organizers.id')
+.select("events.*", "users.name")
+.join('users', 'organizerId', '=', 'users.id')
 .exec(function(err, rows) {
   if(err) {
     console.error("oh dear: " + err);
