@@ -13,7 +13,7 @@ exports.seed = function(knex, Promise) {
         .delete()
     })
     .then(function() {
-      return knex('organizers').insert([
+      return knex('users').insert([
         {
           id: 1,
           name: "Bob",
