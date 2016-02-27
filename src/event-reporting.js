@@ -19,16 +19,6 @@ exports.eventPage = function(organizerId, pageIndex, pageSize, cb) {
     .exec(cb);
 }
 
-exports.mostPopular = function(organizerId, n, since, cb) {
-  knex("events")
-    .join("tickets", "tickets.eventId", "events.id")
-    .where({ organizerId: organizerId })
-    .andWhere("startAt", ">", since)
-    .groupBy("events.id")
-    .select("events.*, SUM(tickets.id)")
-    .exec(cb);
-}
-
 exports.attendeesAttendingNEvents = function(organizerId, n, cb) {
   knex("attendees")
     .leftJoin("tickets", "tickets.attendeeId", "attendees.id")

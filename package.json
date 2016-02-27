@@ -13,5 +13,8 @@
     "knex": "^0.7.3",
     "mocha": "^2.1.0",
     "pg": "^4.2.0"
+  },
+  "devDepedencies": {
+    "lodash": "*"
   }
 }

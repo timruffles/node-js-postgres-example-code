@@ -1,3 +1,14 @@
+"use strict";
+var helper = require("./helper");
+
+describe(function() {
+  before(function(done) {
+    helper.migrateTo("CreateUsersAndRelate", done);
+  });
+
+// queries.txt
+// CreateUsersAndRelate
+
 var search = require("../src/search")
 
 describe("simple text search", function() {
@@ -31,6 +42,9 @@ describe("simple text search", function() {
 })
 
 
+// queries.txt
+// CreateUsersAndRelate
+
 describe("full text search", function() {
 
   it("finds matching records", function(done) {
@@ -46,3 +60,21 @@ describe("full text search", function() {
     });
   });
 })
+
+// transactions.txt
+// CreateUsersAndRelate
+
+var attend = require("../src/attend")
+
+
+describe("attending", function() {
+
+  before(function(done) {
+    
+  });
+
+
+
+})
+
+});
