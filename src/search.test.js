@@ -11,8 +11,9 @@ describe("simple text search", function() {
   it("finds matching records", function() {
     return search.simpleTextSearch("Node")
     .then((events) => {
+      assert(events.length > 0, "should have found some records");
       events.forEach(function(e) {
-        assert.match(e.name, /Node/);
+        assert.match(e.title, /Node/);
       });
     });
   });
@@ -21,10 +22,7 @@ describe("simple text search", function() {
     return search.simpleTextSearch("simple")
     .then(function(events) {
 
-      assert(events.length > 3, "found some");
-      events.forEach(function(e) {
-        assert.notMatch(e.name, /simplify/);
-      });
+      assert.lengthOf(events, 0, "couldn't find records");
 
     });
   });
@@ -37,11 +35,11 @@ describe("simple text search", function() {
 describe("full text search", function() {
 
   it("finds matching records", function() {
-    return search.fullTextSearch("simple")
+    return search.fullTextSearch("parties")
     .then(function(events) {
 
       var foundOne = events.some(function(e) {
-        return /simplify/.test(e.name);
+        return /party/.test(e.title);
       });
 
       assert(foundOne, "found a record via stemming");

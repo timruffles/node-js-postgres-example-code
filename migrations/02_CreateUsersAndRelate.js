@@ -1,3 +1,5 @@
+const helper = require("../lib/migrateHelper");
+
 exports.up = function(knex) {
 
   const createUsers = knex.schema.createTable('users', function (table) {
@@ -11,7 +13,7 @@ exports.up = function(knex) {
   const changeEvents = createUsers
   .then(function() {
     return knex.schema.table('events', function (table) {
-      table.integer('userId')
+      table.integer('organizerId')
         .references('users.id')
         .notNullable();
     })
@@ -49,7 +51,7 @@ exports.up = function(knex) {
       ]);
     })
 
-  })
+  )
   // END ELIDE
 
 };

@@ -10,19 +10,18 @@
     "db:create": "createuser rdbs_node; createdb rdbs_node -O rdbs_node && createdb rdbs_node_test -O rdbs_node",
     "db:destroy": "psql -c 'drop database \"rdbs_node\"'; psql -c 'drop database \"rdbs_node_test\"'",
     "db:migrate": "knex migrate:latest",
-    "db:test:reset": "psql -c 'drop database \"rdbs_node_test\"' && createdb rdbs_node_test -O rdbs_node",
-    "test": "npm run -s db:test:reset && mocha src/*.test.js",
-    "test:ci": "npm run -s db:create && NODE_ENV=testing npm run -s db:migrate && mocha src/*.test.js",
+    "db:test:reset": "psql -c 'drop database \"rdbs_node_test\"' && createdb rdbs_node_test -O rdbs_node && knex migrate:latest --env testing",
+    "test": "npm run -s db:test:reset &&  mocha -r mocha.setup --ui bdd --timeout 200 src/*.test.js",
     "seed-one": "node .util/run-seed 01_initial"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "knex": "^0.7.3",
+    "knex": "^0.11.9",
     "mocha": "^2.1.0",
     "pg": "^4.2.0"
   },
-  "devDepedencies": {
-    "lodash": "*"
+  "devDependencies": {
+    "lodash": "^3.7.0"
   }
 }

@@ -4,5 +4,5 @@
 "use strict";
 
 module.exports = require('knex')(
-  require("./knexfile").development
+  require("./knexfile")[process.env.NODE_ENV]
 );

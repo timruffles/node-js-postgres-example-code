@@ -1,9 +1,8 @@
-var knex = require("../db");
+const knex = require("../db");
 
 exports.simpleTextSearch = function(query, cb) {
-  knex("events")
-  .where("name LIKE %?%", query)
-  .then(events => console.log(events))
+  return knex("events")
+    .where('title', 'like', `%${query}%`)
 }
 
 exports.fullTextSearch = function(query) {

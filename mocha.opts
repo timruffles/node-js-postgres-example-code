@@ -1,3 +1,0 @@
---ui bdd
---timeout 200
--r mocha.setup.js
