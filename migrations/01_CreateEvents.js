@@ -1,4 +1,4 @@
-exports.up = function(knex, Promise) {
+exports.up = function(knex) {
 
   return knex.schema.createTable('events', function (table) {
     table.increments('id');

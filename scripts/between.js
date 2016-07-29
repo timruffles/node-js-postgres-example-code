@@ -9,10 +9,6 @@ var inAWeek = new Date(now.getTime() + periods.weeks(1));
 
 knex("events")
 .whereBetween("startAt", [now, inAWeek])
-.exec(function(err, rows) {
-  if(err) {
-    console.error(err || "event not found");
-  } else {
-    console.log("there are " + rows.length + " events happening next week");
-  }
+.then((rows) => {
+  console.log("there are " + rows.length + " events happening next week");
 })

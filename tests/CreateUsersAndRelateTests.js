@@ -13,22 +13,18 @@ var search = require("../src/search")
 
 describe("simple text search", function() {
 
-  it("finds matching records", function(done) {
-    search.simpleTextSearch("Node", function(err, events) {
-
-      if(err) return done(err);
-
+  it("finds matching records", function() {
+    return search.simpleTextSearch("Node")
+    .then((events) => {
       events.forEach(function(e) {
         assert.match(e.name, /Node/);
       });
-
     });
-    
   });
 
   it("misses complex records", function() {
-    search.simpleTextSearch("simple", function(err, events) {
-      if(err) return done(err);
+    return search.simpleTextSearch("simple")
+    .then(function(events) {
 
       assert(events.length > 3, "found some");
       events.forEach(function(e) {
@@ -36,7 +32,6 @@ describe("simple text search", function() {
       });
 
     });
-
   });
 
 })
@@ -47,10 +42,9 @@ describe("simple text search", function() {
 
 describe("full text search", function() {
 
-  it("finds matching records", function(done) {
-    
-    search.fullTextSearch("simple", function(err, events) {
-      if(err) return done(err);
+  it("finds matching records", function() {
+    return search.fullTextSearch("simple")
+    .then(function(events) {
 
       var foundOne = events.some(function(e) {
         return /simplify/.test(e.name);
@@ -69,7 +63,7 @@ var attend = require("../src/attend")
 
 describe("attending", function() {
 
-  before(function(done) {
+  before(function() {
     
   });
 

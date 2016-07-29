@@ -1,6 +1,6 @@
-exports.up = function(knex, Promise) {
+exports.up = function(knex) {
 
-  var createUsers = knex.schema.createTable('users', function (table) {
+  const createUsers = knex.schema.createTable('users', function (table) {
     table.increments('id');
     table.string('name').notNullable();
     table.string('email').unique().notNullable();
@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
 
   // we need to wait for users to be created
   // before creating events as it relates to the users table
-  var changeEvents = createUsers
+  const changeEvents = createUsers
   .then(function() {
     return knex.schema.table('events', function (table) {
       table.integer('userId')

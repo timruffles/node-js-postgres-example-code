@@ -5,7 +5,7 @@ exports.attend = function(userId, eventId) {
   .then(function(event) {
       // check we have space
       if(event.capacity - event.ticketsIssued > 0) {
-          return Promise.reject(new Error("no-space"));
+          throw new Error("no-space");
       }
       
       // if so, create ticket and update counters

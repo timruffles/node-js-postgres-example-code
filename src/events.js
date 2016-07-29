@@ -1,20 +1,14 @@
-exports.create = function create(data, cb) {
-  knex("events")
+exports.create = function create(data) {
+  return knex("events")
     .insert(data)
     .returning("id")
-    .exec(function(err, ids) {
-      if(err) {
-        return cb(err);
-      } else {
-        data.id = ids[0]; 
-        cb(null, data);
-      }
+    .then(function(ids) {
+      data.id = ids[0]; 
     });
 };
 
-exports.update = function update(id, data, cb) {
-  knex("events")
+exports.update = function update(id, data) {
+  return knex("events")
     .where({ id: id })
     .update(data)
-    .exec(cb);
 };

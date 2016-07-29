@@ -9,13 +9,12 @@ describe("src", function() {
 // interesting-queries.txt
 // src/event-reporting.js
 
-exports.mostPopular = function(organizerId, n, since, cb) {
-  knex("events")
+exports.mostPopular = function(organizerId, n, since) {
+  return knex("events")
     .join("tickets", "tickets.eventId", "events.id")
     .where({ organizerId: organizerId })
     .andWhere("startAt", ">", since)
     .groupBy("events.id")
     .select("events.*, SUM(tickets.id)")
-    .exec(cb);
 } 
 });
