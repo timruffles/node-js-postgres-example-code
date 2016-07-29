@@ -1,7 +1,7 @@
 "use strict";
-var helper = require("./helper");
+var helper = require("./helpers");
 
-describe(function() {
+describe("CreateUsersAndRelate", function() {
   before(function(done) {
     helper.migrateTo("CreateUsersAndRelate", done);
   });
@@ -76,5 +76,5 @@ describe("attending", function() {
 
 
 })
-
+ 
 });

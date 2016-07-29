@@ -5,6 +5,7 @@ module.exports = {
     connection: {
       database: 'rdbs-node',
       user:     'rdbs-node',
+      port: process.env.PG_PORT || 5432,
       password: 'pass',
     },
     pool: {

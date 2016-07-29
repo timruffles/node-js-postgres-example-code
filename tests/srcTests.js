@@ -1,7 +1,7 @@
 "use strict";
-var helper = require("./helper");
+var helper = require("./helpers");
 
-describe(function() {
+describe("src", function() {
   before(function(done) {
     helper.migrateTo("src", done);
   });
@@ -17,5 +17,5 @@ exports.mostPopular = function(organizerId, n, since, cb) {
     .groupBy("events.id")
     .select("events.*, SUM(tickets.id)")
     .exec(cb);
-}
+} 
 });
