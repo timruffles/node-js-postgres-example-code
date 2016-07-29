@@ -1,11 +1,9 @@
 {
-  "name": "code",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "postgres-on-node-example-code",
   "engines": {
     "node": ">= 6.0.0"
   },
+  "private": true,
   "scripts": {
     "db:create": "createuser rdbs_node; createdb rdbs_node -O rdbs_node && createdb rdbs_node_test -O rdbs_node",
     "db:destroy": "psql -c 'drop database \"rdbs_node\"'; psql -c 'drop database \"rdbs_node_test\"'",
@@ -14,8 +12,6 @@
     "test": "npm run -s db:test:reset &&  mocha -r mocha.setup --ui bdd --timeout 200 src/*.test.js",
     "test:ci": "createuser rdbs_node; npm test"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "knex": "^0.11.9",
     "mocha": "^2.1.0",
