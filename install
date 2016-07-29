@@ -1,0 +1,27 @@
+#!/bin/bash
+
+set -eu
+
+main() {
+  precheck
+  npm install
+  npm run db:create
+}
+
+precheck() {
+  if installed node ; then
+    node -e '`your version of node is too old!`'
+  else
+    echo "You don't have node installed!"
+  fi
+
+  if ! installed createdb ; then
+    echo "Can't see the Postgres CLI tools - ensure they're on your path"
+  fi
+}
+
+installed() {
+  which $1 > /dev/null
+}
+
+main
