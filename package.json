@@ -9,8 +9,9 @@
     "db:destroy": "psql -c 'drop database \"rdbs_node\"'; psql -c 'drop database \"rdbs_node_test\"'",
     "db:migrate": "knex migrate:latest",
     "db:test:reset": "psql -c 'drop database \"rdbs_node_test\"'; createdb rdbs_node_test -O rdbs_node && knex migrate:latest --env testing",
-    "test": "npm run -s db:test:reset &&  mocha -r mocha.setup --ui bdd --timeout 200 src/*.test.js",
-    "test:ci": "createuser rdbs_node; npm test"
+    "start": "cd web-app && npm -s start",
+    "test:clean": "npm run -s db:test:reset && npm run -s test",
+    "test": "mocha -r mocha.setup --ui bdd --timeout 200 src/*.test.js"
   },
   "dependencies": {
     "knex": "^0.11.9",

@@ -1,0 +1,7 @@
+extends ../main-layout
+
+block body
+  h1= event.title
+
+  form(method="post", action="/events/" + event.id + "/tickets")
+    input(type="submit", value="Attend")

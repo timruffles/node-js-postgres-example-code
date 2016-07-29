@@ -1,0 +1,9 @@
+extends main-layout
+
+block body
+  h1 Event 40w
+
+  each event in events
+    div
+      h3= event.title
+      a(href="/events/" + event.id) Attend
