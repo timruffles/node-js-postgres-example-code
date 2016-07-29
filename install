@@ -6,6 +6,7 @@ main() {
   precheck
   npm install
   npm run db:create
+  npm run db:migrate
 }
 
 precheck() {
