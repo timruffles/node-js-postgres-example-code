@@ -6,14 +6,15 @@ var _ = require("lodash");
 var knex = exports.knex = require("../db");
 
 
-exports.migrateTo = function(target) {
+exports.migrateTo = function(target, done) {
   var m = new Migrator(knex);
-  return;
+
   clearDb()
   .then(_.partial(migrate, target))
   .then(function() {
     return seed(target);
-  });
+  })
+  .nodeify(done);
 }
 
 function getMigrations() {

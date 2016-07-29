@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "db:create": "createuser rdbs-node && createdb rdbs-node -O rdbs-node",
     "test": "mocha tests",
+    "test:ci": "npm run -s db:create && mocha tests",
     "seed-one": "node .util/run-seed 01_initial"
   },
   "author": "",
