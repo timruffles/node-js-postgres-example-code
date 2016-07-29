@@ -1,9 +1,9 @@
 
 // concurrentAttendees.test.js
 const attend = require("./attend");
-const helper = require("./factory");
+//const helper = require("./factory");
 
-describe("system's handling of many people buying tickets", function() {
+describe.skip("system's handling of many people buying tickets", function() {
 
   before(function() {
     return Promise.all(
