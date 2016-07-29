@@ -1,13 +1,8 @@
 "use strict";
 var helper = require("./helpers");
 
-describe("CreateUsersAndRelate", function() {
-  before(function(done) {
-    helper.migrateTo("CreateUsersAndRelate", done);
-  });
-
 // queries.txt
-// CreateUsersAndRelate
+// search.test.js
 
 var search = require("../src/search")
 
@@ -38,7 +33,7 @@ describe("simple text search", function() {
 
 
 // queries.txt
-// CreateUsersAndRelate
+// search.test.js
 
 describe("full text search", function() {
 
@@ -53,22 +48,4 @@ describe("full text search", function() {
       assert(foundOne, "found a record via stemming");
     });
   });
-})
-
-// transactions.txt
-// CreateUsersAndRelate
-
-var attend = require("../src/attend")
-
-
-describe("attending", function() {
-
-  before(function() {
-    
-  });
-
-
-
-})
- 
-});
+}) 

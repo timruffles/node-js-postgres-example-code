@@ -1,10 +1,16 @@
 module.exports = {
 
-  development: {
+  development: forDb('rdbs_node'),
+  testing: forDb('rdbs_node_test'),
+
+};
+
+function forDb(db) {
+  return {
     client: 'pg',
     connection: {
-      database: 'rdbs-node',
-      user:     'rdbs-node',
+      database: db,
+      user:     'rdbs_node',
       port: process.env.PG_PORT || 5432,
       password: 'pass',
     },
@@ -15,7 +21,5 @@ module.exports = {
     migrations: {
       tableName: 'knex_migrations'
     },
-  },
-
-
-};
+  }
+}

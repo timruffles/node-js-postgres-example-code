@@ -17,7 +17,40 @@ exports.up = function(knex) {
     })
   });
 
-  return changeEvents;
+  return changeEvents
+
+  // ELIDE
+  .then(() =>
+    knex('users').insert([
+      {
+        id: 1,
+        name: "Bob",
+        email: "bob@example.com",
+      },
+      {
+        id: 2,
+        name: "Amy",
+        email: "amy@example.com",
+      },
+    ]).then(function() {
+      return knex('events').insert([
+        {
+          title: "Nodeschool",
+          startAt: helper.stringToDate("2017/02/01 19:30"),
+          endAt: helper.stringToDate("2017/02/01 21:30"),
+          organizerId: 1,
+        },
+        {
+          title: "PostgreSQL party",
+          startAt: helper.stringToDate("2017/06/09 10:00"),
+          endAt: helper.stringToDate("2017/06/11 18:30"),
+          organizerId: 2,
+        },
+      ]);
+    })
+
+  })
+  // END ELIDE
 
 };
 
