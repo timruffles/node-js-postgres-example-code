@@ -1,16 +1,14 @@
-var knex = require("../db")
+const knex = require("../db")
 
 knex("events")
-.exec(function(err, rows) {
+// once our results come in, we'll log them out
+.then(rows => {
 
-  if(err) {
-    console.error("oh dear, I think our database is down: " + err);
-
-  } else {
-    rows.forEach(function(row) {
-      console.log(row.name + " from " + row.startAt  + " until " + row.endAt);
-    });
-
+  for(const row of rows) {
+    console.log(`${row.name} from ${row.startAt} until ${row.endAt}`);
   }
 
-});
+})
+// if we have any issues, we'll deal with them here:
+.catch(err => 
+  console.error("oh dear, I think our database is down: " + err));

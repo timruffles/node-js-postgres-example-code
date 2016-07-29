@@ -1,7 +1,10 @@
-var find = require("./find");
-
 exports.attend = function(userId, eventId) { 
-  return find.byId("events", eventId)
+  return knex("events")
+  .where({ id: eventId })
+  .then(([found]) => {
+    if(found) return found
+    else throw Error(`missing event: ${eventId}`);
+  })
   .then(function(event) {
       // check we have space
       if(event.capacity - event.ticketsIssued > 0) {

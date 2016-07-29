@@ -6,7 +6,6 @@ exports.simpleTextSearch = function(query, cb) {
   .then(events => console.log(events))
 }
 
-
 exports.fullTextSearch = function(query) {
   return knex("events")
   .whereRaw("to_tsvector('english', events.title) @@ to_tsquery('english', ?)", query)

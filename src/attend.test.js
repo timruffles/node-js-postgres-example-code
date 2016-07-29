@@ -4,7 +4,7 @@ var helper = require("./helpers");
 // transactions.txt
 // attend.test.js
 
-var attend = require("../src/attend")
+var attend = require("./attend")
 
 
 describe("attending", function() {
@@ -15,5 +15,4 @@ describe("attending", function() {
 
 
 
-})
- 
+}) 

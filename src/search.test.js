@@ -4,7 +4,7 @@ var helper = require("./helpers");
 // queries.txt
 // search.test.js
 
-var search = require("../src/search")
+var search = require("./search")
 
 describe("simple text search", function() {
 
@@ -30,7 +30,6 @@ describe("simple text search", function() {
   });
 
 })
-
 
 // queries.txt
 // search.test.js
